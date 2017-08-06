@@ -1,4 +1,4 @@
-#Reproducible Research knitr document
+# Reproducible Research knitr document
 
 
 Set global knitr options to echo = TRUE in order to make sure each chunk of r code is displayed in the final document.
@@ -6,7 +6,7 @@ Set global knitr options to echo = TRUE in order to make sure each chunk of r co
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-###Load and clean the data
+### Load and clean the data
       * Load dplyr and lattice
       * Load the data from the working directory
       * Convert the date column from factor to date type.
@@ -17,7 +17,7 @@ data <- read.csv("activity.csv")
 data$date <- as.Date(data$date)
 ```
 
-###What is the mean total number of steps taken per day?
+### What is the mean total number of steps taken per day?
 For this part of the assignment, you can ignore the missing values in the dataset.
 
 Calculate the total number of steps taken per day
@@ -46,7 +46,7 @@ Calculate and report the mean and median of the total number of steps taken per 
 
 The daily mean is `r dmean` steps and the daily median is `r dmedian` steps.
 
-###What is the average daily activity pattern?
+### What is the average daily activity pattern?
 Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 ```{r}
 #average the number of steps across each time period interval
@@ -65,7 +65,7 @@ Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and 
 ```
 Interval `r maxrow` contains on average the most steps.
 
-###Imputing missing values
+### Imputing missing values
 Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 ```{r}
 missingcount <- sum(is.na(data$steps))
@@ -103,7 +103,7 @@ Make a histogram of the total number of steps taken each day and Calculate and r
 The imputed daily mean is `r idmean` (vs. original `r dmean`) steps and the daily median is `r idmedian` (vs. original `r dmedian`) steps.
 Imputing the data increases the daily average by `r dailydiff` steps.
 
-###Are there differences in activity patterns between weekdays and weekends?
+### Are there differences in activity patterns between weekdays and weekends?
 Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 ```{r}
 imputedata$daytype <- ifelse(weekdays(imputedata$date) == "Saturday" | weekdays(imputedata$date) == "Sunday","weekend","weekday")
